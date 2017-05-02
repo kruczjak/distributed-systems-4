@@ -1,0 +1,14 @@
+require_relative './environment'
+
+namespace :db do
+  task :environment do
+    DATABASE_ENV = ENV['DATABASE_ENV'] || 'development'
+    MIGRATIONS_DIR = ENV['MIGRATIONS_DIR'] || 'lib/db/migrations'
+  end
+
+  desc 'Migrate the database (options: VERSION=x, VERBOSE=false).'
+  task :migrate do
+    ActiveRecord::Migration.verbose = true
+    ActiveRecord::Migrator.migrate 'lib/db/migrations', ENV['VERSION'] ? ENV['VERSION'].to_i : nil
+  end
+end

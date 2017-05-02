@@ -1,0 +1,9 @@
+source 'http://rubygems.org'
+
+gem 'activerecord'
+gem 'activesupport'
+gem 'sqlite3'
+gem 'pry'
+gem 'rake'
+gem 'thrift'
+gem 'require_all'
