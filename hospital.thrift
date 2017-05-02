@@ -8,6 +8,12 @@ struct Examination {
     1:Patient patient,
     2:string date,
     3:string doctorName,
+    4:list<Result> results,
+}
+
+struct Result {
+    1:string unit,
+    2:string value,
 }
 
 exception InvalidPatientIdentifier {

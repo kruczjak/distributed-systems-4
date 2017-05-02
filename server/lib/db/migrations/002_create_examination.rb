@@ -2,6 +2,7 @@ class CreateExamination < ActiveRecord::Migration[5.0]
   def change
     create_table :examinations do |t|
       t.integer :patient_id, null: false
+      t.string :doctor_name
 
       t.timestamps null: false
     end
