@@ -1,8 +1,10 @@
 
 # Created by https://www.gitignore.io/api/ruby,rubymine
+out
 .idea
 server/database.sqlite3
 gen-rb
+gen-java
 ### Ruby ###
 *.gem
 *.rbc

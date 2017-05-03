@@ -1,7 +1,8 @@
 require_relative 'environment'
 $:.push('../gen-rb')
-require_all '../gen-rb'
-require 'thrift'
+require_relative '../gen-rb/hospital_types'
+require_relative '../gen-rb/hospital_constants'
+require_relative '../gen-rb/hospital_service'
 
 class Server
   CONFIG_FILE = 'config/config.yml'.freeze
@@ -23,8 +24,8 @@ class Server
   end
 end
 
-begin
+# begin
   Server.new.run
-rescue Exception
-  puts 'Bye :('
-end
+# rescue Exception
+#   puts 'Bye :('
+# end

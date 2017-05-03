@@ -1,4 +1,4 @@
-APP_ENV = ENV['APP_ENV'] || ENV['RACK_ENV'] || 'development'
+APP_ENV = ENV['APP_ENV'] || ENV['RACK_ENV'] || '  development'
 
 require 'bundler/setup'
 Bundler.setup(:default, APP_ENV)
