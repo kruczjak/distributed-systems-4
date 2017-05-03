@@ -14,13 +14,26 @@ class Server
   def run
     handler = HospitalHandler.new
     processor = ::HospitalService::Processor.new(handler)
-    transport = Thrift::ServerSocket.new(@config['server_socket'])
-    transport_factory = Thrift::BufferedTransportFactory.new
-    server = Thrift::SimpleServer.new(processor, transport, transport_factory)
 
-    puts "Starting the server on #{@config['server_socket']}..."
-    server.serve
-    puts '!!!!!Server closed!!!!!'
+    puts "Starting NonBlockingServier on #{@config['non_blocking_server_socket']}..."
+    transport_factory = Thrift::FramedTransportFactory.new
+    transport = Thrift::ServerSocket.new(@config['non_blocking_server_socket'])
+    non_blocking_server = Thrift::NonblockingServer.new(processor, transport, transport_factory)
+    Thread.new do
+      non_blocking_server.serve
+    end
+
+    puts "Starting TThreadPoolServer on #{@config['server_socket']}..."
+    transport_factory = Thrift::BufferedTransportFactory.new
+
+    transport = Thrift::ServerSocket.new(@config['server_socket'])
+    thread_server = Thrift::ThreadPoolServer.new(processor, transport, transport_factory)
+    thread_server.serve
+
+    puts '!!!!!Servers closed!!!!!'
+  ensure
+    non_blocking_server.shutdown if non_blocking_server
+    thread_server.shutdown if thread_server
   end
 end
 

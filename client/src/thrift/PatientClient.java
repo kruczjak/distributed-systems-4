@@ -28,9 +28,9 @@ public class PatientClient {
         } catch (TException e) {
             System.out.println("Thrift exception catched");
             e.printStackTrace();
+        } finally {
+            this.connector.close();
         }
-
-        this.connector.close();
     }
 
     private void perform(HospitalService.Client client) throws IOException, TException {

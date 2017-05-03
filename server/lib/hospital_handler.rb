@@ -22,6 +22,10 @@ class HospitalHandler
     Result.create!(examination_id: exam_id, name: name, unit: unit, value: value).id
   end
 
+  def listExaminations(name)
+    Examination.search_for(name).to_a
+  end
+
   private
 
   def find_patient(id, include = true)

@@ -8,6 +8,7 @@ import thrift.generated.ResultStruct;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by kruczjak on 5/3/17.
@@ -21,7 +22,11 @@ public class Common {
         System.out.println("ID: " + patient.identifier);
         System.out.println("Name: " + patient.name);
         System.out.println("Examinations");
-        for (ExaminationStruct examinationStruct : patient.examinations) {
+        printExaminations(patient.examinations);
+    }
+
+    public static void printExaminations(List<ExaminationStruct> examinations) {
+        for (ExaminationStruct examinationStruct : examinations) {
             System.out.println("> Examination on: " + examinationStruct.date);
             System.out.println("> Doctor: " + examinationStruct.doctorName);
             System.out.println("> Results:");
