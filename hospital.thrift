@@ -25,5 +25,9 @@ exception InvalidPatientIdentifier {
 service HospitalService {
     i32 createPatient(1:string name),
     PatientStruct getPatient(1:i32 identifier) throws (1:InvalidPatientIdentifier error),
+
     list<ExaminationStruct> listExaminations(1:string name),
+    i32 addExamination(1:i32 patientIdentifier, 2:string date, 3:string doctor_name),
+
+    i32 addResult(1:i32 examinationIdentifier, 2:string name, 3:string unit, 4:string value),
 }

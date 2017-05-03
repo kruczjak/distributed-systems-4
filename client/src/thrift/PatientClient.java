@@ -46,21 +46,7 @@ public class PatientClient {
             if (input.startsWith("q")) {
                 break;
             } else if (input.startsWith("1")) {
-                System.out.println("Podaj id:");
-                String id = inputReader.readLine();
-                PatientStruct patient = client.getPatient(Integer.parseInt(id));
-
-                System.out.println("ID: " + patient.identifier);
-                System.out.println("Name: " + patient.name);
-                System.out.println("Examinations");
-                for (ExaminationStruct examinationStruct : patient.examinations) {
-                    System.out.println("> Examination on:" + examinationStruct.date);
-                    System.out.println("> Doctor:" + examinationStruct.doctorName);
-                    System.out.println("> Results:");
-                    for (ResultStruct resultStruct : examinationStruct.results) {
-                        System.out.println(">> " + resultStruct.name + resultStruct.unit + resultStruct.value);
-                    }
-                }
+                Common.getPatient(client, inputReader);
             }
         }
     }

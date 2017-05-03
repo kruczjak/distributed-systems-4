@@ -3,6 +3,7 @@ APP_ENV = ENV['APP_ENV'] || ENV['RACK_ENV'] || '  development'
 require 'bundler/setup'
 Bundler.setup(:default, APP_ENV)
 
+require 'pry'
 require 'active_record'
 require 'active_support'
 require 'require_all'

@@ -43,6 +43,7 @@ public class DoctorClient {
             System.out.println("Wpisz q, aby wyjść.");
             System.out.println("1. Utwórz pacjenta");
             System.out.println("2. Pobierz pacjenta");
+            System.out.println("3. Utwórz badanie");
 
             String input = inputReader.readLine();
 
@@ -53,6 +54,15 @@ public class DoctorClient {
                 String name = inputReader.readLine();
                 int patientId = client.createPatient(name);
                 System.out.println("Stworzono pacjenta z id: " + patientId);
+            } else if (input.startsWith("2")) {
+                Common.getPatient(client, inputReader);
+            } else if (input.startsWith("3")) {
+                System.out.println("Podaj identyfikator pacjenta:");
+                String patientId = inputReader.readLine();
+                System.out.println("Podaj swoje nazwisko:");
+                String doctorName = inputReader.readLine();
+                int examinationId = client.addExamination(Integer.parseInt(patientId), null, doctorName);
+                System.out.println("Stworzono badanie z id: " + examinationId);
             }
         }
     }
