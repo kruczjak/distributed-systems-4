@@ -23,7 +23,11 @@ class HospitalHandler
   end
 
   def listExaminations(name)
-    Examination.search_for(name).to_a
+    p "searching for #{name}"
+    exs = Examination.search_for(name).map(&:to_struct)
+    p 'here'
+    p exs
+    exs
   end
 
   private
